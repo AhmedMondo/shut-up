@@ -24,9 +24,7 @@ jobs:
       - name: Render PHP to HTML
         run: |
           mkdir -p dist
-          php table.php > dist/table.html
-          # Optional: also publish as homepage
-          cp dist/table.html dist/index.html
+          php table.php > dist/index.html   # make table the homepage
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -38,7 +36,5 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v4
